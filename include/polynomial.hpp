@@ -176,7 +176,6 @@ class Polynomial {
     Polynomial temp = *this;
     if (Data.size() < rhs.Data.size()) {
       *this = Polynomial<T>(std::vector<T>{0});
-      ;
       return *this;
     } else {
       for (int i = 0; i < static_cast<int>(buf.Data.size()); i++) {
