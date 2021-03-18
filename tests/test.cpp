@@ -23,7 +23,7 @@ TEST(Polynom, sum) {
   Polynomial<int> k(a1);
   a += b;
   EXPECT_EQ(a, Polynomial<int>(std::vector<int>{1, 6, 8}));
-  b+=k;
+  b += k;
   EXPECT_EQ(b, Polynomial<int>(std::vector<int>{1, 6, 8}));
 }
 
@@ -43,8 +43,12 @@ TEST(Polynom, sub) {
   Polynomial<int> a(a1);
   Polynomial<int> b(a2);
   EXPECT_EQ(a - b, Polynomial<int>(std::vector<int>{1, -2, -2}));
+  EXPECT_EQ(b - a, Polynomial<int>(std::vector<int>{-1, 2, 2}));
+  Polynomial k(a);
   a -= b;
+  b -= k;
   EXPECT_EQ(a, Polynomial<int>(std::vector<int>{1, -2, -2}));
+  EXPECT_EQ(b, Polynomial<int>(std::vector<int>{-1, 2, 2}));
 }
 
 TEST(Polynom, div) {

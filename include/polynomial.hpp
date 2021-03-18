@@ -20,8 +20,8 @@ class Polynomial {
   }
 
  public:
-  Polynomial() : Data{} {}
-  ~Polynomial() {}
+  Polynomial() : Data{} {};
+  ~Polynomial() = default;
   size_t size() { return Data.size(); }
   explicit Polynomial(const std::vector<T> koef) {
     Data = koef;
@@ -103,7 +103,7 @@ class Polynomial {
       }
       for (int i = static_cast<int>(Data.size());
            i < static_cast<int>(rhs.Data.size()); i++) {
-        Data.push_back(rhs.Data[i]);
+        Data.push_back(-rhs.Data[i]);
       }
     }
     zero(*this);
@@ -155,8 +155,7 @@ class Polynomial {
     Polynomial buf(kek);
     Polynomial temp = *this;
     if (Data.size() < rhs.Data.size()) {
-      zero(buf);
-      return buf;
+      return Polynomial<T>(std::vector<T>{0});
     } else {
       for (int i = 0; i < static_cast<int>(buf.Data.size()); i++) {
         buf.Data[buf.Data.size() - i - 1] =
@@ -176,8 +175,8 @@ class Polynomial {
     Polynomial buf(kek);
     Polynomial temp = *this;
     if (Data.size() < rhs.Data.size()) {
-      zero(buf);
-      *this = buf;
+      *this = Polynomial<T>(std::vector<T>{0});
+      ;
       return *this;
     } else {
       for (int i = 0; i < static_cast<int>(buf.Data.size()); i++) {
